@@ -1,0 +1,27 @@
+[Unit]
+Description=PolyAgent pair-accumulation poller
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=polyagent
+Group=polyagent
+WorkingDirectory=/opt/polyagent
+EnvironmentFile=/opt/polyagent/.env
+ExecStart=/opt/polyagent/.venv/bin/polyagent poll
+Restart=always
+RestartSec=15
+KillSignal=SIGINT
+
+StandardOutput=append:/var/log/polyagent/poller.log
+StandardError=append:/var/log/polyagent/poller.err
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/polyagent/data /var/log/polyagent
+
+[Install]
+WantedBy=multi-user.target

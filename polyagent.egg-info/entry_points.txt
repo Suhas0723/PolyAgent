@@ -1,0 +1,2 @@
+[console_scripts]
+polyagent = polyagent.cli:main

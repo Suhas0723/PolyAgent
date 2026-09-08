@@ -1,0 +1,35 @@
+[Unit]
+Description=PolyAgent Polymarket trading agent
+Documentation=https://github.com/your-handle/polyagent
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=polyagent
+Group=polyagent
+WorkingDirectory=/opt/polyagent
+EnvironmentFile=/opt/polyagent/.env
+ExecStart=/opt/polyagent/.venv/bin/polyagent run
+Restart=always
+RestartSec=15
+TimeoutStopSec=30
+KillSignal=SIGINT
+
+StandardOutput=append:/var/log/polyagent/polyagent.log
+StandardError=append:/var/log/polyagent/polyagent.err
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryMax=1G
+ReadWritePaths=/opt/polyagent/data /var/log/polyagent
+
+[Install]
+WantedBy=multi-user.target

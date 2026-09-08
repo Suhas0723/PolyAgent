@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: polyagent
+Version: 1.0.0
+Summary: Polymarket prediction market trading agent with a two-tier Claude analysis pipeline
+Requires-Python: >=3.10
+Requires-Dist: httpx>=0.27.0
+Requires-Dist: anthropic>=0.40.0
+Provides-Extra: live
+Requires-Dist: py-clob-client>=0.17.0; extra == "live"
